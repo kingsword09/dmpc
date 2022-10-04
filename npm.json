@@ -1,0 +1,7 @@
+{
+  "name": "@kingsword/dmp",
+  "version": "0.0.1",
+  "description": "Multi-platform node package bundle to a package.json.",
+  "outDir": ".npm",
+  "importMap": "./import_map.json"
+}
