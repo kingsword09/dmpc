@@ -11,7 +11,7 @@
 	"importMap": "import_map.json",
 	"lint": {
 		"files": {
-			"include": ["src/", "bin/"],
+			"include": ["src/", "cmd/", "bin/", "utils/"],
 			"exclude": ["src/testdata/"]
 		},
 		"rules": {
@@ -22,7 +22,7 @@
 	},
 	"fmt": {
 		"files": {
-			"include": ["src/"],
+			"include": ["src/", "cmd/", "bin/", "utils/"],
 			"exclude": ["src/testdata/"]
 		},
 		"options": {
