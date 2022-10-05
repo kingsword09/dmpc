@@ -5,6 +5,7 @@ import { Cli, Builtins } from "clipanion";
 
 import InitCommand from "cmd_init";
 import BuildCommand from "cmd_build";
+import CreateCommand from "cmd_create";
 
 const npmConfig = (await import("../npm.json", { assert: { type: "json" } }))
   .default;
@@ -17,6 +18,7 @@ const cli = new Cli({
 
 cli.register(InitCommand);
 cli.register(BuildCommand);
+cli.register(CreateCommand);
 cli.register(Builtins.HelpCommand);
 cli.register(Builtins.VersionCommand);
 

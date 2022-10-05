@@ -2,9 +2,11 @@
   "imports": {
     "dnt": "https://deno.land/x/dnt/mod.ts",
     "node_process": "https://deno.land/std@0.158.0/node/process.ts",
+    "node_fs": "https://deno.land/std@0.158.0/node/fs.ts",
     "std_path": "https://deno.land/std@0.158.0/path/mod.ts",
     "path": "./utils/path.ts",
     "cmd_init": "./src/init.ts",
-    "cmd_build": "./src/build.ts"
+    "cmd_build": "./src/build.ts",
+    "cmd_create": "./src/create.ts"
   }
 }

@@ -1,0 +1,20 @@
+{
+  "bin": {},
+  "name": "",
+  "version": "0.0.1",
+  "description": "",
+  "license": "MIT",
+  "exports": {},
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "bugs": {
+    "url": ""
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "node test_runner.js"
+  }
+}
