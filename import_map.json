@@ -5,8 +5,11 @@
     "node_fs": "https://deno.land/std@0.158.0/node/fs.ts",
     "std_path": "https://deno.land/std@0.158.0/path/mod.ts",
     "path": "./utils/path.ts",
-    "cmd_init": "./src/init.ts",
-    "cmd_build": "./src/build.ts",
-    "cmd_create": "./src/create.ts"
+    "cmd_init": "./cmd/init.ts",
+    "cmd_build": "./cmd/build.ts",
+    "cmd_create": "./cmd/create.ts",
+    "config_deno": "./src/config/denoJsonc.ts",
+    "config_importmap": "./src/config/importMap.ts",
+    "config_packagejson": "./src/config/packageJson.ts"
   }
 }

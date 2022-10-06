@@ -1,9 +1,9 @@
 import * as fs from "node_fs";
 import { path } from "path";
 
-export async function writeImportMap(root: string) {
+export async function writeImportMap(dest: string) {
   const { writeFile } = fs.promises;
-  const fileName = path.resolve(root, "./import_map.json");
+  const fileName = path.resolve(dest, "./import_map.json");
   const importMap = `
     {
       "imports": {}
