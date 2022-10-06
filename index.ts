@@ -1,4 +1,5 @@
 import { build, type BuildOptions, emptyDir } from "dnt";
+import { watcher } from "deno_watcher";
 
 const npmConfig = (await import("./npm.json", { assert: { type: "json" } }))
   .default;
@@ -44,7 +45,11 @@ export const buildOptions: BuildOptions = {
   }
 };
 
-if (import.meta.main) {
+async function buildTask() {
   emptyDir("./.npm");
   await build(buildOptions);
+}
+
+if (import.meta.main) {
+  await watcher(buildTask, ["."], { timeout: 5000, exclude: [".npm", "bin"] });
 }

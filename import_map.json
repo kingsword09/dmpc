@@ -10,6 +10,7 @@
     "cmd_create": "./cmd/create.ts",
     "config_deno": "./src/config/denoJsonc.ts",
     "config_importmap": "./src/config/importMap.ts",
-    "config_packagejson": "./src/config/packageJson.ts"
+    "config_packagejson": "./src/config/packageJson.ts",
+    "deno_watcher": "./deno/watcher.ts"
   }
 }
