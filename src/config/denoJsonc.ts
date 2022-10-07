@@ -19,3 +19,9 @@ export async function writeDenoJsonc(dest: string, denoJsonc?: DenoJsonc) {
 
   return;
 }
+
+export async function readDenoJsonc(file: string): Promise<DenoJsonc> {
+  const denoJsonc = (await import(file, { assert: { type: "json" } })).default;
+
+  return denoJsonc;
+}

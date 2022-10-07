@@ -1,3 +1,7 @@
+/**
+ * create a dnt project
+ */
+
 import { Command, Option } from "clipanion";
 import * as fs from "node_fs";
 import { path } from "path";

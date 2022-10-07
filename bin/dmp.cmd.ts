@@ -3,7 +3,7 @@
 import * as process from "node_process";
 import { Cli, Builtins } from "clipanion";
 
-import InitCommand from "cmd_init";
+import NewCommand from "cmd_new";
 import BuildCommand from "cmd_build";
 import CreateCommand from "cmd_create";
 
@@ -16,7 +16,7 @@ const cli = new Cli({
   binaryVersion: npmConfig.version
 });
 
-cli.register(InitCommand);
+cli.register(NewCommand);
 cli.register(BuildCommand);
 cli.register(CreateCommand);
 cli.register(Builtins.HelpCommand);
