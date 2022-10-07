@@ -1,3 +1,5 @@
+import type { PackageJson } from "./packageJson.type.ts";
+
 export interface BuildConfig extends Omit<UserConfig, "build"> {}
 
 export interface UserConfig {
@@ -5,6 +7,11 @@ export interface UserConfig {
   version: string;
   description: string;
   outDir: string;
-  importMap: string;
+  importMap: {
+    imports: {
+      [property: string]: string;
+    };
+  };
+  packageJson: PackageJson;
   build: Partial<BuildConfig>[];
 }

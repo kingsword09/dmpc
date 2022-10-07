@@ -4,7 +4,9 @@ import { Command, Option } from "clipanion";
 export default class BuildCommand extends Command {
   static paths = [[`build`]];
 
+  config = Option.String("-c, --config");
+
   async execute() {
-    console.log("BuildCommand:  " + path.join(process.cwd(), "bin"));
+    const dmpConfig = this.config;
   }
 }

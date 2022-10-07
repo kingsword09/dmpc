@@ -8,7 +8,6 @@ export async function writeDmpJson(options: BuildConfig) {
   const version = options?.version ?? "0.0.1";
   const description = options?.description ?? "";
   const outDir = options?.outDir ?? ".npm";
-  const importMap = options?.importMap ?? "./import_map.json";
 
   const { writeFile } = fs.promises;
   const root = process.cwd();
@@ -19,7 +18,10 @@ export async function writeDmpJson(options: BuildConfig) {
     "version": ${version},
     "description": ${description},
     "outDir": ${outDir},
-    "importMap": ${importMap}
+    "importMap": {
+      "imports": {}
+    },
+    "packageJson": {}
   }
   `;
 

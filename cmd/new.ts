@@ -12,15 +12,13 @@ export default class NewCommand extends Command {
   version = Option.String("-v, --version");
   description = Option.String("-d, --description");
   out = Option.String("-o, --out");
-  config = Option.String("-c, --config");
 
   async execute() {
     await writeDmpJson({
       name: this.name,
       versoin: this.version,
       description: this.description,
-      outDir: this.out,
-      importMap: this.config
+      outDir: this.out
     });
   }
 }
