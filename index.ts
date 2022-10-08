@@ -51,5 +51,12 @@ async function buildTask() {
 }
 
 if (import.meta.main) {
-  await watcher(buildTask, ["."], { timeout: 5000, exclude: [".npm", "bin"] });
+  if (Deno.env.get("mode") === "dev") {
+    await watcher(buildTask, ["."], {
+      timeout: 5000,
+      exclude: [".npm", "bin"]
+    });
+  } else {
+    await buildTask();
+  }
 }

@@ -1,9 +1,9 @@
 import * as fs from "node_fs";
 import * as process from "node_process";
 import { path } from "path";
-import { UserConfig, BuildConfig } from "../types/userConfig.type.ts";
+import { UserConfig, BuildConfig } from "../../types/userConfig.type.ts";
 
-export async function writeDmpJson(options: BuildConfig) {
+export async function writeDmpJson(options: Partial<BuildConfig>) {
   const name = options?.name ?? "demo";
   const version = options?.version ?? "0.0.1";
   const description = options?.description ?? "";

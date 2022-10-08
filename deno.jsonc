@@ -1,7 +1,7 @@
 {
 	"tasks": {
 		"test": "deno test -A",
-		"dev": "deno run -A --watch --unstable index.ts",
+		"dev": "export mode=dev && deno run -A --watch --unstable index.ts",
 		"build": "deno run -A --unstable index.ts"
 	},
 	"compilerOptions": {

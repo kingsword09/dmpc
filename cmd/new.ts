@@ -16,7 +16,7 @@ export default class NewCommand extends Command {
   async execute() {
     await writeDmpJson({
       name: this.name,
-      versoin: this.version,
+      version: this.version,
       description: this.description,
       outDir: this.out
     });
