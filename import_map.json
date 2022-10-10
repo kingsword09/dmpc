@@ -3,9 +3,10 @@
     "dnt": "https://deno.land/x/dnt/mod.ts",
     "node_process": "https://deno.land/std@0.158.0/node/process.ts",
     "node_fs": "https://deno.land/std@0.158.0/node/fs.ts",
+    "node_crypto": "https://deno.land/std@0.158.0/node/crypto.ts",
     "node_cp": "https://deno.land/std@0.158.0/node/child_process.ts",
     "std_path": "https://deno.land/std@0.158.0/path/mod.ts",
-    "path": "./utils/path.ts",
+    "utils_path": "./utils/path.ts",
     "cmd_new": "./cmd/new.ts",
     "cmd_build": "./cmd/build.ts",
     "cmd_create": "./cmd/create.ts",
@@ -13,6 +14,9 @@
     "config_importmap": "./src/config/importMap.ts",
     "config_packagejson": "./src/config/packageJson.ts",
     "config_userconfig": "./src/config/userConfig.ts",
+    "config_gitignore": "./src/config/gitignore.ts",
+    "config_entry": "./src/config/entry.ts",
+    "build_task": "./src/build/task.ts",
     "deno_watcher": "./deno/watcher.ts"
   }
 }

@@ -4,7 +4,7 @@
 
 import { Command, Option } from "clipanion";
 import * as fs from "node_fs";
-import { path } from "path";
+import { path } from "utils_path";
 import * as process from "node_process";
 
 import { writeDenoJsonc } from "config_deno";

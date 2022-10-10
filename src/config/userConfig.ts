@@ -1,7 +1,7 @@
 import * as fs from "node_fs";
 import * as process from "node_process";
-import { path } from "path";
-import { UserConfig, BuildConfig } from "../../types/userConfig.type.ts";
+import { path } from "utils_path";
+import { IUserConfig, BuildConfig } from "../../types/userConfig.type.ts";
 
 export async function writeDmpJson(options: Partial<BuildConfig>) {
   const name = options?.name ?? "demo";
@@ -17,6 +17,7 @@ export async function writeDmpJson(options: Partial<BuildConfig>) {
     "name": ${name},
     "version": ${version},
     "description": ${description},
+    "entryPoints": [],
     "outDir": ${outDir},
     "importMap": {
       "imports": {}
@@ -30,8 +31,8 @@ export async function writeDmpJson(options: Partial<BuildConfig>) {
   return;
 }
 
-export async function readDmpJson(file: string): Promise<UserConfig> {
+export async function readDmpJson(file: string): Promise<IUserConfig> {
   const userConfig = (await import(file, { assert: { type: "json" } })).default;
 
-  return userConfig as UserConfig;
+  return userConfig as IUserConfig;
 }

@@ -1,5 +1,5 @@
 import * as fs from "node_fs";
-import { path } from "path";
+import { path } from "utils_path";
 import type { PackageJson } from "../../types/packageJson.type.ts";
 
 export async function writePakcageJson(dest: string, packageJson: PackageJson) {

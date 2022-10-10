@@ -1,4 +1,4 @@
-import { path } from "path";
+import { path } from "utils_path";
 
 export async function watcher(
   fn: () => Promise<void>,

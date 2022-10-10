@@ -1,5 +1,7 @@
-import { path } from "path";
+import { path } from "utils_path";
+import * as process from "node_process";
 import { Command, Option } from "clipanion";
+import { buildTask } from "build_task";
 
 export default class BuildCommand extends Command {
   static paths = [[`build`]];
@@ -7,6 +9,10 @@ export default class BuildCommand extends Command {
   config = Option.String("-c, --config");
 
   async execute() {
-    const dmpConfig = this.config;
+    const dmpJsonPath = this.config
+      ? path.resolve(process.cwd(), this.config)
+      : "";
+
+    await buildTask(dmpJsonPath);
   }
 }
