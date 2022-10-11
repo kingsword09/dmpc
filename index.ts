@@ -11,6 +11,11 @@ export const buildOptions: BuildOptions = {
       kind: "bin",
       name: "dmp",
       path: "./bin/dmp.cmd.ts"
+    },
+    {
+      kind: "export",
+      name: "./config",
+      path: "./src/config/index.ts"
     }
   ],
   outDir: npmConfig.outDir,

@@ -1,38 +1,28 @@
 import * as fs from "node_fs";
 import * as process from "node_process";
 import { path } from "utils_path";
-import { IUserConfig, BuildConfig } from "../../types/userConfig.type.ts";
+import { pathToFileURL } from "node_url";
+import { IUserConfig } from "../../types/userConfig.type.ts";
 
-export async function writeDmpJson(options: Partial<BuildConfig>) {
-  const name = options?.name ?? "demo";
-  const version = options?.version ?? "0.0.1";
-  const description = options?.description ?? "";
-  const outDir = options?.outDir ?? ".npm";
+const { writeFile } = fs.promises;
 
-  const { writeFile } = fs.promises;
-  const root = process.cwd();
-  const file = path.resolve(root, "./dmp.json");
-  const content = `
-  {
-    "name": ${name},
-    "version": ${version},
-    "description": ${description},
-    "entryPoints": [],
-    "outDir": ${outDir},
-    "importMap": {
-      "imports": {}
-    },
-    "packageJson": {}
-  }
-  `;
-
-  await writeFile(file, content, "utf-8");
-
-  return;
-}
-
-export async function readDmpJson(file: string): Promise<IUserConfig> {
-  const userConfig = (await import(file, { assert: { type: "json" } })).default;
+export async function readDmpTs(file: string): Promise<IUserConfig> {
+  const url = pathToFileURL(file);
+  const userConfig = await import(url.href);
 
   return userConfig as IUserConfig;
+}
+
+export async function writeDmpTs(name: string) {
+  const root = process.cwd();
+  const file = path.resolve(root, "./dmp.ts");
+  const content = `
+  import { defineConfig } from "@kingsword/dmp/config";
+
+  export default defineConfig({
+    name: "${name}",
+    version: "0.0.1",
+  });
+  `;
+  await writeFile(file, content, "utf-8");
 }

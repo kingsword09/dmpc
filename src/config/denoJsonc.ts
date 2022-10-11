@@ -3,7 +3,7 @@ import * as crypto from "node_crypto";
 import { path } from "utils_path";
 import type { DenoJsonc } from "../../types/denoJsonc.type.ts";
 
-const { writeFile, readFile } = fs.promises;
+const { writeFile } = fs.promises;
 
 export async function writeDenoJsonc(dest: string, denoJsonc?: DenoJsonc) {
   const fileName = path.resolve(dest, "./deno.jsonc");

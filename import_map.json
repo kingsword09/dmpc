@@ -5,6 +5,7 @@
     "node_fs": "https://deno.land/std@0.158.0/node/fs.ts",
     "node_crypto": "https://deno.land/std@0.158.0/node/crypto.ts",
     "node_cp": "https://deno.land/std@0.158.0/node/child_process.ts",
+    "node_url": "https://deno.land/std@0.158.0/node/url.ts",
     "std_path": "https://deno.land/std@0.158.0/path/mod.ts",
     "utils_path": "./utils/path.ts",
     "cmd_new": "./cmd/new.ts",

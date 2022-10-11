@@ -1,4 +1,5 @@
 import type { PackageJson } from "./packageJson.type.ts";
+import type { DenoJsonc } from "./denoJsonc.type.ts";
 
 export interface BuildConfig extends Omit<IUserConfig, "build"> {}
 
@@ -25,6 +26,7 @@ export interface IUserConfig {
       [property: string]: string;
     };
   };
+  denoJsonc: DenoJsonc;
   packageJson: PackageJson;
   build: Partial<BuildConfig>[];
 }
