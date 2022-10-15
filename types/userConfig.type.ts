@@ -1,32 +1,20 @@
-import type { PackageJson } from "./packageJson.type.ts";
-import type { DenoJsonc } from "./denoJsonc.type.ts";
+import type { BuildOptions } from "dnt";
+import "deno-types";
 
-export interface BuildConfig extends Omit<IUserConfig, "build"> {}
-
-export interface IEntryPoint {
-  /**
-   * If the entrypoint is for an npm binary or export.
-   * @default "export"
-   */
-  kind?: "bin" | "export";
-  /** Name of the entrypoint in the "binary" or "exports". */
-  name: string;
-  /** Path to the entrypoint. */
-  path: string;
+type PlatformType = "node" | "browser";
+export interface IBuildConfig extends Omit<IUserConfig, "build"> {
+  platform?: PlatformType;
 }
 
-export interface IUserConfig {
+export interface IUserConfig extends Omit<BuildOptions, "importMap"> {
   name: string;
   version: string;
   description: string;
-  entryPoints: (string | IEntryPoint)[];
   outDir: string;
   importMap: {
     imports: {
       [property: string]: string;
     };
   };
-  denoJsonc: DenoJsonc;
-  packageJson: PackageJson;
-  build: Partial<BuildConfig>[];
+  build: IBuildConfig[];
 }

@@ -15,7 +15,9 @@ export async function writeImportMap(dest: string, importMap?: IImportMap) {
   } else {
     _importMap = `
     {
-      "imports": {}
+      "imports": {
+        "dnt": "https://deno.land/x/dnt/mod.ts"
+      }
     }
   `;
   }

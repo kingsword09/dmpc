@@ -45,7 +45,8 @@ export const buildOptions: BuildOptions = {
       clipanion: "^3.2.0-rc.12"
     },
     devDependencies: {
-      "@types/node": "latest"
+      "@types/node": "latest",
+      "deno-types": "^1.25.0"
     }
   }
 };

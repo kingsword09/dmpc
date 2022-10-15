@@ -8,9 +8,10 @@ import { writeDmpTs } from "config_userconfig";
 export default class NewCommand extends Command {
   static paths = [[`new`]];
 
-  name = Option.String("", { required: true });
+  name = Option.String({ required: true });
 
   async execute() {
+    console.log(this.name);
     await writeDmpTs(this.name);
   }
 }

@@ -4,7 +4,8 @@ import { path } from "utils_path";
 import { pathToFileURL } from "node_url";
 import { IUserConfig } from "../../types/userConfig.type.ts";
 
-const { writeFile } = fs.promises;
+const { existsSync } = fs;
+const { writeFile, mkdir } = fs.promises;
 
 export async function readDmpTs(file: string): Promise<IUserConfig> {
   const url = pathToFileURL(file);
@@ -14,7 +15,14 @@ export async function readDmpTs(file: string): Promise<IUserConfig> {
 }
 
 export async function writeDmpTs(name: string) {
-  const root = process.cwd();
+  const root = path.join(process.cwd(), name);
+
+  if (existsSync(root)) {
+    console.warn(`${name} exists!!!`);
+    return;
+  }
+
+  await mkdir(root, { recursive: true });
   const file = path.resolve(root, "./dmp.ts");
   const content = `
   import { defineConfig } from "@kingsword/dmp/config";
@@ -25,4 +33,5 @@ export async function writeDmpTs(name: string) {
   });
   `;
   await writeFile(file, content, "utf-8");
+  console.log("done!!!");
 }

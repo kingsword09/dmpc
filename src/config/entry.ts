@@ -6,29 +6,22 @@ export async function writeEntryFile(
   userConfig: IUserConfig
 ) {
   const { writeFile } = fs.promises;
-  const content = `
-  import { build, type BuildOptions, emptyDir } from "dnt";
 
-  if(import.meta.main) {
-    emptyDir("${userConfig.outDir}");
-    await build({
-      importMap: "./import_map.json",
-      entryPoints: ${userConfig.entryPoints},
-      outDir: "${userConfig.outDir}",
-      typeCheck: true,
-      scriptModule: false,
-      shims: {
-        deno: "dev"
-      },
-      compilerOptions: {
-        target: "Latest",
-        importHelpers: true
-      },
-      packageManager: "yarn",
-      package: ${userConfig.packageJson}
-    });
-  }
-  `;
+  // TODO: 处理多个入口
+  // const content = `
+  // import { build, type BuildOptions, emptyDir } from "dnt";
+
+  // if(import.meta.main) {
+  //   emptyDir("${userConfig.outDir}");
+
+  //   for (const buildPartial of userConfig.build) {
+  //     let buildConfig = {
+  //       ${...userConfig}
+  //     };
+  //     await build(${});
+  //   }
+  // }
+  // `;
 
   await writeFile(entryFile, content, "utf-8");
 

@@ -30,16 +30,10 @@ export async function readDenoJsonc(file: string): Promise<DenoJsonc> {
 
 export async function writeDmpDenoJsonc(
   dest: string,
-  outDir: string
+  denoJsonc: DenoJsonc
 ): Promise<string> {
   const fileName = path.resolve(dest, "./deno.jsonc");
-  const denoJsonc = (
-    await import("../../assets/denoJsoncTemplate.json", {
-      assert: { type: "json" }
-    })
-  ).default;
-
-  const entryFile = `./${outDir}/index_${crypto
+  const entryFile = `./index_${crypto
     .createHash("md5")
     .update("dmp")
     .digest("base64")}.ts`;
