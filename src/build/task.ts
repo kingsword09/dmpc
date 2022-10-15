@@ -1,5 +1,5 @@
-import * as cp from "node_cp";
 import { path } from "utils_path";
+import * as cp from "node_cp";
 import * as fs from "node_fs";
 import * as process from "node_process";
 import { readDmpTs } from "config_userconfig";
@@ -9,8 +9,7 @@ import { writeImportMap } from "config_importmap";
 import { writeEntryFile } from "config_entry";
 
 export async function buildTask(dmpPath: string) {
-  const { spawnSync } = cp;
-  const _dmpPath = dmpPath ?? path.resolve(process.cwd(), "./dmp.ts");
+  const _dmpPath = dmpPath || path.resolve(process.cwd(), "./dmp.ts");
 
   if (!fs.existsSync(_dmpPath)) {
     console.warn("未找到dmp.ts配置文件");
@@ -34,6 +33,6 @@ export async function buildTask(dmpPath: string) {
   await writeImportMap(root, importMap);
   await writeEntryFile(entryFile, userConfig);
 
-  spawnSync("deno", ["task", "build"], { cwd: root });
+  cp.spawnSync("deno", ["task", "build"], { cwd: root });
   console.log("build done!!!");
 }

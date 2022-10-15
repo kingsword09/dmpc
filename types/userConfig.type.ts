@@ -1,3 +1,4 @@
+import { DenoJsonc } from "./denoJsonc.type.ts";
 import type { BuildOptions } from "dnt";
 import "deno-types";
 
@@ -16,5 +17,6 @@ export interface IUserConfig extends Omit<BuildOptions, "importMap"> {
       [property: string]: string;
     };
   };
+  denoJsonc: DenoJsonc;
   build: IBuildConfig[];
 }

@@ -7,21 +7,25 @@ export async function writeEntryFile(
 ) {
   const { writeFile } = fs.promises;
 
-  // TODO: 处理多个入口
-  // const content = `
-  // import { build, type BuildOptions, emptyDir } from "dnt";
+  const content = `
+  import { build, emptyDir } from "dnt";
+  
+  if(import.meta.main) {
+    emptyDir("${userConfig.outDir}");
 
-  // if(import.meta.main) {
-  //   emptyDir("${userConfig.outDir}");
+    for (const buildPartial of userConfig.build) {
+      let buildConfig = {...${userConfig}};
+      delete buildConfig.build;
 
-  //   for (const buildPartial of userConfig.build) {
-  //     let buildConfig = {
-  //       ${...userConfig}
-  //     };
-  //     await build(${});
-  //   }
-  // }
-  // `;
+      buildConfig = {
+        ...${userConfig},
+        ...buildPartial
+      };
+      
+      await build(buildConfig);
+    }
+  }
+  `;
 
   await writeFile(entryFile, content, "utf-8");
 
