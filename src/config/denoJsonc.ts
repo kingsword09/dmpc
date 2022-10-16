@@ -30,17 +30,25 @@ export async function readDenoJsonc(file: string): Promise<DenoJsonc> {
 
 export async function writeDmpDenoJsonc(
   dest: string,
-  denoJsonc: DenoJsonc
+  denoJsonc?: DenoJsonc
 ): Promise<string> {
+  const _denoJsonc =
+    denoJsonc ??
+    (
+      await import("../../assets/denoJsoncTemplate.json", {
+        assert: { type: "json" }
+      })
+    ).default;
+
   const fileName = path.resolve(dest, "./deno.jsonc");
   const entryFile = `./index_${crypto
     .createHash("md5")
     .update("dmp")
     .digest("base64")}.ts`;
 
-  denoJsonc.tasks.build = `deno run -A ${entryFile}`;
+  _denoJsonc.tasks.build = `deno run -A ${entryFile}`;
 
-  await writeFile(fileName, JSON.stringify(denoJsonc), "utf-8");
+  await writeFile(fileName, JSON.stringify(_denoJsonc), "utf-8");
 
   return path.resolve(dest, entryFile);
 }

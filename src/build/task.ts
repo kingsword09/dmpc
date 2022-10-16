@@ -2,11 +2,12 @@ import { path } from "utils_path";
 import * as cp from "node_cp";
 import * as fs from "node_fs";
 import * as process from "node_process";
-import { readDmpTs } from "config_userconfig";
+import { readDmpTs, readUserConfig, writeUserConfig } from "config_userconfig";
 import { writeDmpDenoJsonc } from "config_deno";
 import { writeGitIgnore } from "config_gitignore";
 import { writeImportMap } from "config_importmap";
 import { writeEntryFile } from "config_entry";
+import { IUserConfig } from "../../types/userConfig.type.ts";
 
 export async function buildTask(dmpPath: string) {
   const _dmpPath = dmpPath || path.resolve(process.cwd(), "./dmp.ts");
@@ -17,21 +18,14 @@ export async function buildTask(dmpPath: string) {
   }
 
   const root = path.dirname(_dmpPath);
-  const userConfig = await readDmpTs(_dmpPath);
-  const outDir = userConfig.outDir ?? ".npm";
-  const importMap = userConfig.importMap;
-  const denoJsonc =
-    userConfig.denoJsonc ??
-    (
-      await import("../../assets/denoJsoncTemplate.json", {
-        assert: { type: "json" }
-      })
-    ).default;
+  const config = await readDmpTs(_dmpPath);
+  const userConfig = await readUserConfig(config);
 
-  await writeGitIgnore(root, outDir);
-  const entryFile = await writeDmpDenoJsonc(root, denoJsonc);
-  await writeImportMap(root, importMap);
-  await writeEntryFile(entryFile, userConfig);
+  await writeGitIgnore(root, userConfig.outDir);
+  const entryFile = await writeDmpDenoJsonc(root, userConfig.denoJsonc);
+  await writeImportMap(root, userConfig.importMap);
+  await writeEntryFile(entryFile, userConfig.outDir);
+  await writeUserConfig(root, userConfig as IUserConfig);
 
   cp.spawnSync("deno", ["task", "build"], { cwd: root });
   console.log("build done!!!");

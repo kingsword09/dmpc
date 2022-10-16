@@ -36,15 +36,11 @@ export async function writeDmpTs(name: string) {
   export default defineConfig({
     name: "${name}",
     version: "0.0.1",
+    outDir: ".npm"
   });
   `;
   await writeFile(file, content, "utf-8");
 
-  // const packageJson = (
-  //   await import("../../assets/packageJsonTemplate.json", {
-  //     assert: { type: "json" }
-  //   })
-  // ).default;
   cp.spawnSync("npm", ["init", "-y"], { cwd: root });
   const packageJson = (
     await import(path.join(root, "./package.json"), {
@@ -60,4 +56,36 @@ export async function writeDmpTs(name: string) {
   cp.spawnSync("npm", ["i"], { cwd: root });
 
   console.log("done!!!");
+}
+
+export async function readUserConfig(config: IUserConfig) {
+  config.outDir ?? (config.outDir = ".npm");
+
+  const buildOptions = (
+    await import("../../assets/buildOptionsTemplate.json", {
+      assert: { type: "json" }
+    })
+  ).default;
+  const packageJson = (
+    await import(path.join(process.cwd(), "./package.json"), {
+      assert: { type: "json" }
+    })
+  ).default;
+
+  const userConfig = {
+    ...buildOptions,
+    ...config,
+    package: {
+      ...packageJson,
+      ...config.package
+    }
+  };
+
+  return userConfig;
+}
+
+export async function writeUserConfig(dest: string, userConfig: IUserConfig) {
+  const fileName = path.join(dest, "./dmp.json");
+
+  await writeFile(fileName, JSON.stringify(userConfig), "utf-8");
 }

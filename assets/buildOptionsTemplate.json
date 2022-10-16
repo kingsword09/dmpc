@@ -1,0 +1,15 @@
+{
+  "entryPoints": [],
+  "outDir": ".npm",
+  "typeCheck": true,
+  "scriptModule": false,
+  "shims": {
+    "deno": "dev"
+  },
+  "compilerOptions": {
+    "target": "Latest",
+    "importHelpers": true
+  },
+  "packageManager": "npm",
+  "package": {}
+}

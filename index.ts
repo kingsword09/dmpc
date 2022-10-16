@@ -1,8 +1,6 @@
-import { build, type BuildOptions, emptyDir } from "dnt";
+import { build, emptyDir, type BuildOptions } from "dnt";
 import { watcher } from "deno_watcher";
-
-const npmConfig = (await import("./npm.json", { assert: { type: "json" } }))
-  .default;
+import npmConfig from "./npm.json" assert { type: "json" };
 
 export const buildOptions: BuildOptions = {
   importMap: npmConfig.importMap,
@@ -54,6 +52,9 @@ export const buildOptions: BuildOptions = {
 async function buildTask() {
   emptyDir("./.npm");
   await build(buildOptions);
+  await Deno.copyFile("./LICENSE", "./.npm/LICENSE");
+  await Deno.copyFile("./README.md", "./.npm/README.md");
+  await Deno.copyFile("./.gitignore", "./.npm/.gitignore");
 }
 
 if (import.meta.main) {

@@ -18,5 +18,5 @@ export interface IUserConfig extends Omit<BuildOptions, "importMap"> {
     };
   };
   denoJsonc: DenoJsonc;
-  build: IBuildConfig[];
+  build?: IBuildConfig[];
 }

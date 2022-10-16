@@ -1,29 +1,21 @@
 import * as fs from "node_fs";
-import { IUserConfig } from "../../types/userConfig.type.ts";
 
-export async function writeEntryFile(
-  entryFile: string,
-  userConfig: IUserConfig
-) {
-  const { writeFile } = fs.promises;
+const { writeFile } = fs.promises;
 
+export async function writeEntryFile(entryFile: string, outDir: string) {
   const content = `
-  import { build, emptyDir } from "dnt";
+  import { build, emptyDir, type BuildOptions } from "dnt";
+  import userConfig from "./dmp.json" assert { type: "json" };
   
   if(import.meta.main) {
-    emptyDir("${userConfig.outDir}");
+    emptyDir("${outDir}");
 
-    for (const buildPartial of userConfig.build) {
-      let buildConfig = {...${userConfig}};
-      delete buildConfig.build;
-
-      buildConfig = {
-        ...${userConfig},
-        ...buildPartial
-      };
-      
-      await build(buildConfig);
-    }
+    const buildConfig = {
+      ...userConfig,
+      importMap: "./import_map.json"
+    };
+    
+    await build(buildConfig as BuildOptions);
   }
   `;
 
