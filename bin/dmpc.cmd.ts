@@ -11,7 +11,7 @@ const npmConfig = (await import("../npm.json", { assert: { type: "json" } }))
   .default;
 
 const cli = new Cli({
-  binaryLabel: "dmp",
+  binaryLabel: "dmpc",
   binaryName: npmConfig.name,
   binaryVersion: npmConfig.version
 });

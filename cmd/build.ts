@@ -9,10 +9,10 @@ export default class BuildCommand extends Command {
   config = Option.String("-c, --config");
 
   async execute() {
-    const dmpJsonPath = this.config
+    const dmpcJsonPath = this.config
       ? path.resolve(process.cwd(), this.config)
       : "";
 
-    await buildTask(dmpJsonPath);
+    await buildTask(dmpcJsonPath);
   }
 }

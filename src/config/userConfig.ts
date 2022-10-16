@@ -9,7 +9,7 @@ import { IUserConfig } from "../../types/userConfig.type.ts";
 const { existsSync } = fs;
 const { writeFile, mkdir, copyFile, rm } = fs.promises;
 
-export async function readDmpTs(file: string): Promise<IUserConfig> {
+export async function readdmpcTs(file: string): Promise<IUserConfig> {
   // TODO(@kingsword09): 有待改进
   const tempFile = file.replace(".ts", ".mjs");
   await copyFile(file, tempFile);
@@ -20,7 +20,7 @@ export async function readDmpTs(file: string): Promise<IUserConfig> {
   return userConfig as IUserConfig;
 }
 
-export async function writeDmpTs(name: string) {
+export async function writedmpcTs(name: string) {
   const root = path.join(process.cwd(), name);
 
   if (existsSync(root)) {
@@ -29,9 +29,9 @@ export async function writeDmpTs(name: string) {
   }
 
   await mkdir(root, { recursive: true });
-  const file = path.resolve(root, "./dmp.ts");
+  const file = path.resolve(root, "./dmpc.ts");
   const content = `
-  import { defineConfig } from "@kingsword/dmp/config";
+  import { defineConfig } from "@kingsword/dmpc/config";
 
   export default defineConfig({
     name: "${name}",
@@ -49,7 +49,7 @@ export async function writeDmpTs(name: string) {
   ).default;
   packageJson.name = name;
   packageJson.devDependencies = {
-    "@kingsword/dmp": "file:/Users/biyou/src/github/dmp/.npm"
+    "@kingsword/dmpc": "^0.0.1"
   };
 
   await writePakcageJson(root, packageJson);
@@ -85,7 +85,7 @@ export async function readUserConfig(config: IUserConfig) {
 }
 
 export async function writeUserConfig(dest: string, userConfig: IUserConfig) {
-  const fileName = path.join(dest, "./dmp.json");
+  const fileName = path.join(dest, "./dmpc.json");
 
   await writeFile(fileName, JSON.stringify(userConfig), "utf-8");
 }

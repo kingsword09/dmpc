@@ -5,7 +5,7 @@ const { writeFile } = fs.promises;
 export async function writeEntryFile(entryFile: string, outDir: string) {
   const content = `
   import { build, emptyDir, type BuildOptions } from "dnt";
-  import userConfig from "./dmp.json" assert { type: "json" };
+  import userConfig from "./dmpc.json" assert { type: "json" };
   
   if(import.meta.main) {
     emptyDir("${outDir}");

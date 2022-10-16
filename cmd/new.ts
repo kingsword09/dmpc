@@ -1,9 +1,9 @@
 /**
- * create a dmp project
+ * create a dmpc project
  */
 
 import { Command, Option } from "clipanion";
-import { writeDmpTs } from "config_userconfig";
+import { writedmpcTs } from "config_userconfig";
 
 export default class NewCommand extends Command {
   static paths = [[`new`]];
@@ -12,6 +12,6 @@ export default class NewCommand extends Command {
 
   async execute() {
     console.log(this.name);
-    await writeDmpTs(this.name);
+    await writedmpcTs(this.name);
   }
 }

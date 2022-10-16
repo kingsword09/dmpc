@@ -7,8 +7,8 @@ export const buildOptions: BuildOptions = {
   entryPoints: [
     {
       kind: "bin",
-      name: "dmp",
-      path: "./bin/dmp.cmd.ts"
+      name: "dmpc",
+      path: "./bin/dmpc.cmd.ts"
     },
     {
       kind: "export",
@@ -34,10 +34,10 @@ export const buildOptions: BuildOptions = {
     license: "MIT",
     repository: {
       type: "git",
-      url: "git+https://github.com/kingsword09/dmp.git"
+      url: "git+https://github.com/kingsword09/dmpc.git"
     },
     bugs: {
-      url: "https://github.com/kingsword09/dmp/issues"
+      url: "https://github.com/kingsword09/dmpc/issues"
     },
     dependencies: {
       clipanion: "^3.2.0-rc.12"

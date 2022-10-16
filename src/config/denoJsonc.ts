@@ -28,7 +28,7 @@ export async function readDenoJsonc(file: string): Promise<DenoJsonc> {
   return denoJsonc;
 }
 
-export async function writeDmpDenoJsonc(
+export async function writedmpcDenoJsonc(
   dest: string,
   denoJsonc?: DenoJsonc
 ): Promise<string> {
@@ -43,7 +43,7 @@ export async function writeDmpDenoJsonc(
   const fileName = path.resolve(dest, "./deno.jsonc");
   const entryFile = `./index_${crypto
     .createHash("md5")
-    .update("dmp")
+    .update("dmpc")
     .digest("base64")}.ts`;
 
   _denoJsonc.tasks.build = `deno run -A ${entryFile}`;
