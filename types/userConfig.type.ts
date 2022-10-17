@@ -10,13 +10,13 @@ export interface IBuildConfig extends Omit<IUserConfig, "build"> {
 export interface IUserConfig extends Omit<BuildOptions, "importMap"> {
   name: string;
   version: string;
-  description: string;
+  description?: string;
   outDir: string;
-  importMap: {
+  importMap?: {
     imports: {
       [property: string]: string;
     };
   };
-  denoJsonc: DenoJsonc;
+  denoJsonc?: DenoJsonc;
   build?: IBuildConfig[];
 }

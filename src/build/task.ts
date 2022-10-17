@@ -22,10 +22,13 @@ export async function buildTask(dmpcPath: string) {
   const userConfig = await readUserConfig(config);
 
   await writeGitIgnore(root, userConfig.outDir);
-  const entryFile = await writedmpcDenoJsonc(root, userConfig.denoJsonc);
   await writeImportMap(root, userConfig.importMap);
-  await writeEntryFile(entryFile, userConfig.outDir);
   await writeUserConfig(root, userConfig as IUserConfig);
+  const denoJsoncPath = path.resolve(root, "./deno.jsonc");
+  if (!fs.existsSync(denoJsoncPath)) {
+    const entryFile = await writedmpcDenoJsonc(root, userConfig.denoJsonc);
+    await writeEntryFile(entryFile, userConfig.outDir);
+  }
 
   cp.spawnSync("deno", ["task", "build"], { cwd: root });
   console.log("build done!!!");
