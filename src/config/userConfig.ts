@@ -21,6 +21,9 @@ export async function readdmpcTs(file: string): Promise<IUserConfig> {
 }
 
 export async function writedmpcTs(name: string) {
+  const { default: npmConfig } = await import("../../npm.json", {
+    assert: { type: "json" }
+  });
   const root = path.join(process.cwd(), name);
 
   if (existsSync(root)) {
@@ -49,7 +52,7 @@ export async function writedmpcTs(name: string) {
   ).default;
   packageJson.name = name;
   packageJson.devDependencies = {
-    "@kingsword/dmpc": "^0.0.1"
+    "@kingsword/dmpc": `^${npmConfig.version}`
   };
 
   await writePakcageJson(root, packageJson);

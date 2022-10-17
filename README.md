@@ -11,7 +11,7 @@ npm i -g @kingsword/dmpc
 yarn global add @kingsword/dmpc
 ```
 
-### command
+### usage
 ```shell
 0. @kingsword/dmpc new <name>
 1. @kingsword/dmpc build [-c, --config #0]
@@ -19,6 +19,5 @@ yarn global add @kingsword/dmpc
 3. @kingsword/dmpc -h
 4. @kingsword/dmpc -v
 ```
-
 
 

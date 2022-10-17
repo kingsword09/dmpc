@@ -45,6 +45,11 @@ export const buildOptions: BuildOptions = {
     devDependencies: {
       "@types/node": "latest",
       "deno-types": "^1.25.0"
+    },
+    typesVersions: {
+      ">3.1": {
+        config: ["types/src/config"]
+      }
     }
   }
 };

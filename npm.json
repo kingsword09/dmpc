@@ -1,6 +1,6 @@
 {
   "name": "@kingsword/dmpc",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Multi-platform node package bundle to a package.json.",
   "outDir": ".npm",
   "importMap": "./import_map.json"
