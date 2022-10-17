@@ -7,7 +7,7 @@ export async function writeGitIgnore(dest: string, outDir: string) {
 
   const curPath = path.dirname(fileURLToPath(import.meta.url));
   let content = await readFile(
-    path.resolve(curPath, "../../../.gitignore"),
+    path.resolve(curPath, "../../assets/.gitignoreTemplate"),
     "utf-8"
   );
   content += `\n ${outDir} \n`;
