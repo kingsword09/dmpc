@@ -39,9 +39,6 @@ export const buildOptions: BuildOptions = {
     bugs: {
       url: "https://github.com/kingsword09/dmpc/issues"
     },
-    dependencies: {
-      clipanion: "^3.2.0-rc.12"
-    },
     devDependencies: {
       "@types/node": "latest",
       "deno-types": "^1.25.0"
